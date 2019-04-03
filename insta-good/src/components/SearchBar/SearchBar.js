@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchBar.css'
+import IGLogo from './instagram.png'
 
 class SearchBar extends React.Component {
     
@@ -7,7 +8,7 @@ class SearchBar extends React.Component {
 render () {
     return (
         <div className="searchBar">
-            <h2>******SearchBar*******</h2>
+            <img className="logo" alt="logo" src={IGLogo} />
         </div>
     );
 };
