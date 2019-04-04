@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PostHeader from './PostHeader';
 import './PostContainer.css';
 import CommentSection from '../../../src/components/CommentSection/CommentSection.js';
+import Likes from './Likes'
 
 class Post extends React.Component {
     constructor(props) {
@@ -18,21 +20,35 @@ class Post extends React.Component {
         return (
             <div className="post">
                 <PostHeader 
-                 username={props.post.username}
-                    thumbnailUrl={props.post.thumbnailUrl}
+                 username={this.props.post.username}
+                    thumbnailUrl={this.props.post.thumbnailUrl}
                 />
                 <div className="post-image-container">
                 <p>Post a pic</p>
                 <img
                 alt="post thumbnail"
                 className="post-pic"
-                src={props.post.imgUrl}
+                src={this.props.post.imgUrl}
                 />
+            <Likes 
+                incrementLike={this.incrementLike}
+                likes={this.state.likes} 
+            />
             </div>
-        <CommentSection comments={props.post.comments} />
+        <CommentSection 
+        postId={this.props.post.imageUrl}
+        comments={this.props.post.comments} />
         </div>
         );
     } 
+};
+
+Post.propTypes = {
+    post: PropTypes.shape({
+        username: PropTypes.string,
+        thumbnailUrl: PropTypes.string,
+        imageUrl: PropTypes.string
+    })
 };
 
 export default Post;
